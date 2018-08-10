@@ -1,0 +1,8 @@
+.h1 {
+    text-align: center;
+}
+
+#container {
+    background-image: url("../img/happy_hamburgers.png");
+    background-repeat: repeat;
+}
