@@ -2,26 +2,31 @@
 $(function () {
   $(".change-devoured").on("click", function (event) {
     var id = $(this).data("id");
-    var newDevoured = $(this).data("newDevoured");
+    var newAte = $(this).data("ate");
 
+    console.log()
     var newDevouredState = {
-      devoured: newDevoured
+      devoured: newAte
     }
-    console.log(newDevoured);
+    console.log("id ", id)
+    console.log(newAte);
     console.log(newDevouredState);
+
+    // Send the PUT request.
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      data: newDevouredState
+    }).then(
+      function () {
+        console.log("changed available to", newAte);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+    
   });
 
-  // Send the PUT request.
-  $.ajax("/api/burgers/" + id, {
-    type: "PUT",
-    data: newDevouredState
-  }).then(
-    function () {
-      console.log("changed available to", newDevoured);
-      // Reload the page to get the updated list
-      location.reload();
-    }
-  );
+
 });
 
 $(".create-form").on("submit", function (event) {
